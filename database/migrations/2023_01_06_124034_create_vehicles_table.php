@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->integer('vmodel_id');
+            $table->integer('model_id')->unsigned();
 //            $table->integer('manufacturer_id');
-            $table->date('production_year');
-            $table->integer('kilometer_age');
+            $table->integer('production_year')->unsigned();
+            $table->integer('kilometer_age')->unsigned();
             $table->timestamps();
         });
     }

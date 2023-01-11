@@ -25,9 +25,9 @@ class VehicleRequest extends FormRequest
     public function rules()
     {
         return [
-            'kilometer_age' => 'required|int|min:0',
-            'production_year' => 'required|date',
-            'vmodel_id' => 'required|int|min:0'
+            'kilometer_age' => 'integer|min:0',
+            'production_year' => 'required|integer|min:0',
+            'model_id' => 'required|integer|min:0'
         ];
     }
 

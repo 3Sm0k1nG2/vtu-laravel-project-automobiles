@@ -26,7 +26,7 @@ class ManufacturerRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'founded_year' => 'required|date|before_or_equal:today'
+            'founded_year' => 'required|integer|min:0|max:' . date('Y')
         ];
     }
 

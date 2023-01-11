@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->date('founded_year');
+            $table->integer('founded_year')->unsigned();
             $table->timestamps();
         });
     }
