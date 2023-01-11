@@ -8,6 +8,6 @@
 </head>
 <body style="font-size: 24px">
     <center><h1>Manufacturers</h1></center>
-    <a href="/">Home</a>
+    <a href={{ route('index') }}>Home</a>
 </body>
 </html>

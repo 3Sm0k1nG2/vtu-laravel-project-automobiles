@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index']);
-Route::get('/manufacturers', [Controller::class, 'manufacturers']);
-Route::get('/vmodels', [Controller::class, 'vmodels']);
-Route::get('/vehicles', [Controller::class, 'vehicles']);
+Route::get('/', [Controller::class, 'index'])
+    ->name('index');
+
+Route::get('/manufacturers/{id?}', [Controller::class, 'manufacturers'])
+    ->whereNumber('id')
+    ->name('manufacturers');
+
+Route::get('/models/{id?}', [Controller::class, 'models'])
+    ->whereNumber('id')
+    ->name('models');
+
+Route::get('/vehicles/{id?}', [Controller::class, 'vehicles'])
+    ->whereNumber('id')
+    ->name('vehicles');
+

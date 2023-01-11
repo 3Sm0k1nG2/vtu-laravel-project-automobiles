@@ -8,11 +8,11 @@
 </head>
 <body style="font-size: 24px">
     <center><h1>Welcome user</h1></center>
-    <ul>
+    <ul style="">
         <li><u>Home</u></li>
-        <li><a href="/manufacturers">Manufacturers</a></li>
-        <li><a href="/vmodels">Vmodels</a></li>
-        <li><a href="/vehicles">Vehicles</a></li>
+        <li><a href={{ route('manufacturers') }}>Manufacturers</a></li>
+        <li><a href={{ route('models') }}>Models</a></li>
+        <li><a href={{ route('vehicles') }}>Vehicles</a></li>
     </ul>
 </body>
 </html>
