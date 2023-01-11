@@ -42,7 +42,7 @@ class VehicleCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('vmodel_id');
-        CRUD::column('manufacturer_id');
+//        CRUD::column('manufacturer_id');
         CRUD::column('production_year');
         CRUD::column('kilometer_age');
         CRUD::column('created_at');
@@ -66,7 +66,7 @@ class VehicleCrudController extends CrudController
         CRUD::setValidation(VehicleRequest::class);
 
         CRUD::field('vmodel_id');
-        CRUD::field('manufacturer_id');
+//        CRUD::field('manufacturer_id');
         CRUD::field('production_year');
         CRUD::field('kilometer_age');
 

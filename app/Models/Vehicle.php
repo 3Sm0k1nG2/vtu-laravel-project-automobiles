@@ -40,10 +40,10 @@ class Vehicle extends Model
         return $this->belongsTo(Vmodel::class, 'vmodel_id', 'id');
     }
 
-    public function manufacturer()
-    {
-        return $this->belongsTo(Manufacturer::class, 'manufacturer_id', 'manufacturer_id');
-    }
+//    public function manufacturer()
+//    {
+//        return $this->belongsTo(Vmodel::class, 'manufacturer_id', 'manufacturer_id');
+//    }
 
     /*
     |--------------------------------------------------------------------------
