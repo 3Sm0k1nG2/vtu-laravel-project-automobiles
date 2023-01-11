@@ -25,8 +25,8 @@ class VmodelRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:255',
-            'manufacturer_id' => 'required'
+            'name' => 'required|string|min:1|max:255',
+            'manufacturer_id' => 'required|int|min:0'
         ];
     }
 
