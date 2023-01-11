@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as BaseModel;
 
-class Vmodel extends Model
+class Model extends BaseModel
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Vmodel extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'vmodels';
+    protected $table = 'models';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

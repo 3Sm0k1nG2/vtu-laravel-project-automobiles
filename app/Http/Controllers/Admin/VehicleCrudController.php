@@ -29,8 +29,6 @@ class VehicleCrudController extends CrudController
         CRUD::setModel(\App\Models\Vehicle::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/vehicle');
         CRUD::setEntityNameStrings('vehicle', 'vehicles');
-
-        $this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -41,7 +39,7 @@ class VehicleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('vmodel_id');
+        CRUD::column('model_id');
 //        CRUD::column('manufacturer_id');
         CRUD::column('production_year');
         CRUD::column('kilometer_age');
@@ -65,7 +63,7 @@ class VehicleCrudController extends CrudController
     {
         CRUD::setValidation(VehicleRequest::class);
 
-        CRUD::field('vmodel_id');
+        CRUD::field('model_id');
 //        CRUD::field('manufacturer_id');
         CRUD::field('production_year');
         CRUD::field('kilometer_age');
@@ -88,18 +86,11 @@ class VehicleCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    private function getFieldsData() {
-        return [
-            //
-        ];
-    }
-
-    protected function setupShowOperation()
-    {
-        // by default the Show operation will try to show all columns in the db table,
-        // but we can easily take over, and have full control of what columns are shown,
-        // by changing this config for the Show operation
-        $this->crud->set('show.setFromDb', false);
-        $this->crud->addColumns($this->getFieldsData(TRUE));
+    protected function setupShowOperation(){
+        CRUD::column('model_id');
+        CRUD::column('production_year');
+        CRUD::column('kilometer_age');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
     }
 }

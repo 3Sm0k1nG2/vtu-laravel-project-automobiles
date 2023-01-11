@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
@@ -35,14 +34,14 @@ class Vehicle extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function vmodel()
+    public function model()
     {
-        return $this->belongsTo(Vmodel::class, 'vmodel_id', 'id');
+        return $this->belongsTo(Model::class, 'model_id', 'id');
     }
 
 //    public function manufacturer()
 //    {
-//        return $this->belongsTo(Vmodel::class, 'manufacturer_id', 'manufacturer_id');
+//        return $this->belongsTo(Model::class, 'manufacturer_id', 'manufacturer_id');
 //    }
 
     /*

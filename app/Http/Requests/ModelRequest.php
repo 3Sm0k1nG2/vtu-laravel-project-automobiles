@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VmodelRequest extends FormRequest
+class ModelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class VmodelRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'manufacturer_id' => 'required|int|min:0'
+            'manufacturer_id' => 'required|integer|min:0'
         ];
     }
 

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\VmodelRequest;
+use App\Http\Requests\ModelRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class VmodelCrudController
+ * Class ModelCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class VmodelCrudController extends CrudController
+class ModelCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,11 +26,9 @@ class VmodelCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Vmodel::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/vmodel');
-        CRUD::setEntityNameStrings('vmodel', 'vmodels');
-
-        $this->crud->addFields($this->getFieldsData());
+        CRUD::setModel(\App\Models\Model::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/model');
+        CRUD::setEntityNameStrings('model', 'models');
     }
 
     /**
@@ -61,7 +59,7 @@ class VmodelCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(VmodelRequest::class);
+        CRUD::setValidation(ModelRequest::class);
 
         CRUD::field('name');
         CRUD::field('manufacturer_id');
@@ -84,22 +82,10 @@ class VmodelCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    private function getFieldsData() {
-        return [
-            [
-                'name'=> 'name',
-                'label' => 'Name',
-                'type'=> 'text'
-            ]
-        ];
-    }
-
-    protected function setupShowOperation()
-    {
-        // by default the Show operation will try to show all columns in the db table,
-        // but we can easily take over, and have full control of what columns are shown,
-        // by changing this config for the Show operation
-        $this->crud->set('show.setFromDb', false);
-        $this->crud->addColumns($this->getFieldsData(TRUE));
+    protected function setupShowOperation(){
+        CRUD::column('name');
+        CRUD::column('manufacturer_id');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
     }
 }

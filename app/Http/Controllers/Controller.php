@@ -21,9 +21,9 @@ class Controller extends BaseController
         return view('manufacturers');
     }
 
-    public function vmodels(/*Type $var = null*/)
+    public function models(/*Type $var = null*/)
     {
-        return view('vmodels');
+        return view('models');
     }
 
     public function vehicles(/*Type $var = null*/)
