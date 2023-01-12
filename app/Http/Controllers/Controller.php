@@ -11,23 +11,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function index(/*Type $var = null*/)
+    public function __invoke()
     {
         return view('index');
-    }
-
-    public function manufacturers(/*Type $var = null*/)
-    {
-        return view('manufacturers');
-    }
-
-    public function models(/*Type $var = null*/)
-    {
-        return view('models');
-    }
-
-    public function vehicles(/*Type $var = null*/)
-    {
-        return view('vehicles');
     }
 }

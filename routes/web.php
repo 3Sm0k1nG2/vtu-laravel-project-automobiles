@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\ModelController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index'])
+Route::get('/', Controller::class)
     ->name('index');
 
-Route::get('/manufacturers/{id?}', [Controller::class, 'manufacturers'])
+Route::get('/manufacturers', [ManufacturerController::class, 'index'])
+    ->name('manufacturer.index');
+Route::get('/manufacturers/{id}', [ManufacturerController::class, 'show'])
     ->whereNumber('id')
-    ->name('manufacturers');
+    ->name('manufacturer.show');
 
-Route::get('/models/{id?}', [Controller::class, 'models'])
+Route::get('/models', [ModelController::class, 'index'])
+    ->name('model.index');
+Route::get('/models/{id}', [ModelController::class, 'show'])
     ->whereNumber('id')
-    ->name('models');
+    ->name('model.show');
 
-Route::get('/vehicles/{id?}', [Controller::class, 'vehicles'])
+Route::get('/vehicles', [VehicleController::class, 'index'])
+    ->name('vehicle.index');
+Route::get('/vehicles/{id}', [VehicleController::class, 'show'])
     ->whereNumber('id')
-    ->name('vehicles');
+    ->name('vehicle.show');
 

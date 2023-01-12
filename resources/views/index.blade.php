@@ -10,9 +10,9 @@
     <center><h1>Welcome user</h1></center>
     <ul style="">
         <li><u>Home</u></li>
-        <li><a href={{ route('manufacturers') }}>Manufacturers</a></li>
-        <li><a href={{ route('models') }}>Models</a></li>
-        <li><a href={{ route('vehicles') }}>Vehicles</a></li>
+        <li><a href={{ route('manufacturer.index') }}>Manufacturers</a></li>
+        <li><a href={{ route('model.index') }}>Models</a></li>
+        <li><a href={{ route('vehicle.index') }}>Vehicles</a></li>
     </ul>
 </body>
 </html>
