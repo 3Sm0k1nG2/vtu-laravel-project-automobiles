@@ -7,7 +7,26 @@
     <title>Home page</title>
 </head>
 <body style="font-size: 24px">
+    <nav>
+        <a href="{{ route('index') }}">Home</a>
+        <a href="{{ route('manufacturer.index') }}">Manufacturers</a>
+        <a href="{{ route('model.index') }}">Models</a>
+        <a href="{{ route('vehicle.index') }}">Vehicles</a>
+    </nav>
+
     <center><h1>Vehicles</h1></center>
-    <a href={{ route('index') }}>Home</a>
+
+    @if($vehicles)
+        <ul>
+            @foreach ($vehicles as $vehicle)
+                <li>
+                    <a href="{{ route('vehicle.show', $vehicle->id) }}">
+                        {{ $vehicle->model->name }}({{ $vehicle->production_year }}) {{ $vehicle->kilometer_age }}km
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+    
 </body>
 </html>

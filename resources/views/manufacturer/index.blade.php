@@ -7,7 +7,28 @@
     <title>Home page</title>
 </head>
 <body style="font-size: 24px">
+    <nav>
+        <a href="{{ route('index') }}">Home</a>
+        <a href="{{ route('manufacturer.index') }}">Manufacturers</a>
+        <a href="{{ route('model.index') }}">Models</a>
+        <a href="{{ route('vehicle.index') }}">Vehicles</a>
+    </nav>
+
     <center><h1>Manufacturers</h1></center>
-    <a href={{ route('index') }}>Home</a>
+
+    @if ($manufacturers)
+        <ul>
+            @foreach ($manufacturers as $manufacturer)
+                <li>
+                    <a href="{{ route('manufacturer.show', $manufacturer->id) }}">
+                        {{ $manufacturer->name }}({{ $manufacturer->founded_year }})
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @else
+        <h2>No manufacturers found.</h2>
+    @endif
+
 </body>
 </html>
