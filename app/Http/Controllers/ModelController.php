@@ -11,8 +11,7 @@ class ModelController extends Controller
     {
         return view('model.index', [
             'models' => Model::orderByDesc('updated_at')
-                ->limit(5)
-                ->get()
+                ->paginate(2)
         ]);
     }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home page</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"></link>
 </head>
 <body style="font-size: 24px">
     <nav>
@@ -28,5 +29,8 @@
         </ul>
     @endif
 
+    <div class='pagination'>
+        {{ $models->links() }}
+    </div>
 </body>
 </html>

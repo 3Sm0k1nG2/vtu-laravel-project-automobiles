@@ -11,8 +11,7 @@ class ManufacturerController extends Controller
     {
         return view('manufacturer.index', [
             'manufacturers' => Manufacturer::orderByDesc('updated_at')
-                ->limit(5)
-                ->get()
+                ->paginate(2)
         ]);
     }
 

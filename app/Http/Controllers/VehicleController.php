@@ -11,8 +11,7 @@ class VehicleController extends Controller
     {
         return view('vehicle.index', [
             'vehicles' => Vehicle::orderByDesc('updated_at')
-                ->limit(5)
-                ->get()
+                ->paginate(2)
         ]);
     }
 
