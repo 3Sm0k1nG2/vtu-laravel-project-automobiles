@@ -26,8 +26,8 @@
         <li>Production Year: {{ $vehicle->production_year }}</li>
         <li>Kilometer Age: {{ $vehicle->kilometer_age }}</li>
         <li>Manufacturer: 
-            <a href="{{ route('manufacturer.show', $vehicle->model->manufacturer->id) }}">
-                {{ $vehicle->model->manufacturer->name }}
+            <a href="{{ route('manufacturer.show', $vehicle->manufacturer->id) }}">
+                {{ $vehicle->manufacturer->name }}
             </a>
         </li>
         <li>Id: {{ $vehicle->id }}</li>
