@@ -79,7 +79,10 @@ class ModelCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::setValidation(ModelRequest::class);
+        
+        CRUD::field('manufacturer_id')->type('custom.select_readonly');
+        CRUD::field('name');
     }
 
     protected function setupShowOperation(){
