@@ -83,7 +83,12 @@ class VehicleCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::setValidation(VehicleRequest::class);
+
+        CRUD::field('manufacturer_id')->type('custom.select_readonly');
+        CRUD::field('model_id')->type('custom.select_readonly');
+        CRUD::field('production_year');
+        CRUD::field('kilometer_age');
     }
 
     protected function setupShowOperation(){
