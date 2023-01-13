@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ModelApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\ModelController;
@@ -17,6 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// API
+Route::prefix('api')->group(function () {
+    Route::get('/models', [ModelApiController::class, 'getMany'])
+        ->name('api.model');
+    Route::fallback(function (){
+        return response()->json([
+            'message' => 'Endpoint not found',
+        ], 404);
+    });
+});
+
+// MVC
 Route::get('/', Controller::class)
     ->name('index');
 
@@ -37,4 +50,3 @@ Route::get('/vehicles', [VehicleController::class, 'index'])
 Route::get('/vehicles/{id}', [VehicleController::class, 'show'])
     ->whereNumber('id')
     ->name('vehicle.show');
-
