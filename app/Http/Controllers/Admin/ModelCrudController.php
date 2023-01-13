@@ -39,8 +39,8 @@ class ModelCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
         CRUD::column('manufacturer_id');
+        CRUD::column('name');
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
@@ -61,8 +61,8 @@ class ModelCrudController extends CrudController
     {
         CRUD::setValidation(ModelRequest::class);
 
-        CRUD::field('name');
         CRUD::field('manufacturer_id');
+        CRUD::field('name');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -83,8 +83,8 @@ class ModelCrudController extends CrudController
     }
 
     protected function setupShowOperation(){
-        CRUD::column('name');
         CRUD::column('manufacturer_id');
+        CRUD::column('name');
         CRUD::column('created_at');
         CRUD::column('updated_at');
     }

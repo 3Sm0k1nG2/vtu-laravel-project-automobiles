@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-            $table->integer('model_id')->unsigned();
-//            $table->integer('manufacturer_id');
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->unsignedBigInteger('model_id');
             $table->integer('production_year')->unsigned();
             $table->integer('kilometer_age')->unsigned();
+            $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade');
+            $table->foreign('model_id')->references('id')->on('models')->onDelete('cascade');
             $table->timestamps();
         });
     }
