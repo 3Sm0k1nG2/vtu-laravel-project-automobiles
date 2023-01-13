@@ -25,8 +25,8 @@ class ModelRequest extends FormRequest
     public function rules()
     {
         return [
+            'manufacturer_id' => 'required|integer|min:0',
             'name' => 'required|string|min:1|max:255',
-            'manufacturer_id' => 'required|integer|min:0'
         ];
     }
 

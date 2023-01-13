@@ -17,20 +17,20 @@ class ModelsTableSeeder extends Seeder
     {
         $models = [
             [
+                'manufacturer_id' => 1,
                 'name' => 'MK3',
-                'manufacturer_id' => 1
             ],
             [
+                'manufacturer_id' => 2,
                 'name' => 'Elfin MS8 Streamliner',
-                'manufacturer_id' => 2
             ],
             [
+                'manufacturer_id' => 2,
                 'name' => 'Crusader',
-                'manufacturer_id' => 2
             ],
             [
+                'manufacturer_id' => 3,
                 'name' => 'Fabia R5',
-                'manufacturer_id' => 3
             ]
         ];
 
