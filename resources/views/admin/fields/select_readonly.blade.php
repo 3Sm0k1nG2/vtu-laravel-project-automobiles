@@ -16,13 +16,12 @@
     }
 @endphp
 
-@include('crud::fields.inc.wrapper_start')
+{{-- @include('crud::fields.inc.wrapper_start') --}}
 
     <label>{!! $field['label'] !!}</label>
     @include('crud::fields.inc.translatable_icon')
 
     <select 
-        disabled
         name="{{ $field['name'] }}"
         @include('crud::fields.inc.attributes')
         style="background-color: #f1f4f8"
@@ -46,4 +45,4 @@
         <p class="help-block">{!! $field['hint'] !!}</p>
     @endif
 
-@include('crud::fields.inc.wrapper_end')
+{{-- @include('crud::fields.inc.wrapper_end') --}}
