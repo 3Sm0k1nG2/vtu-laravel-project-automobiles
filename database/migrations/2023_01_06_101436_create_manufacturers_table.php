@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('founded_year')->unsigned();
+            $table->string('image')->unique()->nullable();
             $table->timestamps();
         });
     }

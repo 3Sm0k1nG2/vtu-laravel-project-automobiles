@@ -26,7 +26,8 @@ class ManufacturerRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:1|max:255',
-            'founded_year' => 'required|integer|min:0|max:' . date('Y')
+            'founded_year' => 'required|integer|min:0|max:' . date('Y'),
+            'image' => 'image|mimes:jpg,jpeg,png,bmp,svg,'
         ];
     }
 

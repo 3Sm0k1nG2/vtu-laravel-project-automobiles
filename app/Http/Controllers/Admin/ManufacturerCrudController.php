@@ -19,6 +19,28 @@ class ManufacturerCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private function getFieldsData($show = FALSE) {
+        return [
+            [
+                'name'=> 'name',
+                'label' => 'Manufacturer',
+                'type'=> 'text'
+            ],
+            [
+                'name' => 'founded_year',
+                'label' => 'Founded Year',
+                'type' => 'text'
+            ],
+            [
+                'name' => 'image',
+                'label' => 'Logo',
+                'type' => ($show ? 'view' : 'upload'),
+                'view' => 'admin/fields/image',
+                'upload' => 'true'
+            ],
+        ];
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -29,6 +51,8 @@ class ManufacturerCrudController extends CrudController
         CRUD::setModel(\App\Models\Manufacturer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/manufacturer');
         CRUD::setEntityNameStrings('manufacturer', 'manufacturers');
+    
+        CRUD::addFields($this->getFieldsData());
     }
 
     /**
@@ -39,16 +63,20 @@ class ManufacturerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('founded_year');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
+    }
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+     /**
+     * Define what happens when the List operation is loaded.
+     * 
+     * @see  https://backpackforlaravel.com/docs/
+     * @return void
+     */
+    protected function setupShowOperation()
+    {
+        CRUD::set('show.setFromDb', false);
+        CRUD::addColumns($this->getFieldsData(TRUE));
     }
 
     /**
@@ -60,15 +88,7 @@ class ManufacturerCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ManufacturerRequest::class);
-
-        CRUD::field('name');
-        CRUD::field('founded_year');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->getFieldsData();
     }
 
     /**
