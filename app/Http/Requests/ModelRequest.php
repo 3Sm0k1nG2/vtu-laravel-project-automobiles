@@ -27,6 +27,7 @@ class ModelRequest extends FormRequest
         return [
             'manufacturer_id' => 'required|integer|min:0',
             'name' => 'required|string|min:1|max:255',
+            'image' => 'image|mimes:jpg,jpeg,png,bmp,svg',
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ModelRequest;
+use App\Models\Model;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -19,6 +20,32 @@ class ModelCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private function getFieldsData($show = FALSE, $edit = FALSE) {
+        $fields = [
+            [
+                'name'=> 'manufacturer_id',
+                'label' => 'Manufacturer',
+                'type'=> $show ? 'select' : ($edit ? 'view' : 'select'),
+                'view' => 'admin/fields/select_readonly',
+                'attribute' => 'name'
+            ],
+            [
+                'name'=> 'name',
+                'label' => 'Model',
+                'type'=> 'text'
+            ],
+            [
+                'name' => 'image',
+                'label' => 'Image',
+                'type' => ($show ? 'view' : 'upload'),
+                'view' => 'admin/fields/image',
+                'upload' => true
+            ],
+        ];
+
+        return $fields;
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -29,6 +56,8 @@ class ModelCrudController extends CrudController
         CRUD::setModel(\App\Models\Model::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/model');
         CRUD::setEntityNameStrings('model', 'models');
+
+        CRUD::addFields($this->getFieldsData());
     }
 
     /**
@@ -39,16 +68,8 @@ class ModelCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('manufacturer_id');
-        CRUD::column('name');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::set('show.setFromDb', false);
+        CRUD::addColumns($this->getFieldsData(TRUE));
     }
 
     /**
@@ -61,14 +82,8 @@ class ModelCrudController extends CrudController
     {
         CRUD::setValidation(ModelRequest::class);
 
-        CRUD::field('manufacturer_id');
-        CRUD::field('name');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
+        CRUD::set('show.setFromDb', false);
+        CRUD::addFields($this->getFieldsData());
     }
 
     /**
@@ -80,15 +95,11 @@ class ModelCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         CRUD::setValidation(ModelRequest::class);
-        
-        CRUD::field('manufacturer_id')->type('custom.select_readonly');
-        CRUD::field('name');
+        CRUD::addFields($this->getFieldsData(FALSE, TRUE));
     }
 
     protected function setupShowOperation(){
-        CRUD::column('manufacturer_id');
-        CRUD::column('name');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        CRUD::set('show.setFromDb', false);
+        CRUD::addColumns($this->getFieldsData(TRUE));
     }
 }

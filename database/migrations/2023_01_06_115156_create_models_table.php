@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('manufacturer_id');
             $table->string('name');
+            $table->string('image')->unique()->nullable();
             $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade');
             $table->timestamps();
         });
