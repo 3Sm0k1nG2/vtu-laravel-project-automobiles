@@ -72,7 +72,7 @@ class Model extends BaseModel
     {
         $file_path = "\storage\images\models\\";
         Image::make(public_path() . $file_path . $file_name)
-            ->resize(256, null, function ($constraint) {
+            ->resize(512, null, function ($constraint) {
                 $constraint->aspectRatio();
             })
             ->save(public_path() . $file_path . $file_name);

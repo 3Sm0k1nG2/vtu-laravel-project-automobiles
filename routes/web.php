@@ -32,21 +32,3 @@ Route::prefix('api')->group(function () {
 // MVC
 Route::get('/', Controller::class)
     ->name('index');
-
-Route::get('/manufacturers', [ManufacturerController::class, 'index'])
-    ->name('manufacturer.index');
-Route::get('/manufacturers/{id}', [ManufacturerController::class, 'show'])
-    ->whereNumber('id')
-    ->name('manufacturer.show');
-
-Route::get('/models', [ModelController::class, 'index'])
-    ->name('model.index');
-Route::get('/models/{id}', [ModelController::class, 'show'])
-    ->whereNumber('id')
-    ->name('model.show');
-
-Route::get('/vehicles', [VehicleController::class, 'index'])
-    ->name('vehicle.index');
-Route::get('/vehicles/{id}', [VehicleController::class, 'show'])
-    ->whereNumber('id')
-    ->name('vehicle.show');

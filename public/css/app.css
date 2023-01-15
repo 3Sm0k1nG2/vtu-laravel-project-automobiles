@@ -1,0 +1,356 @@
+:root {
+    --white: #ffffff;
+    --black: #000000;
+
+    --primary: #12263A;
+    --secondary: #06BCC1;
+    --third: #C5D8D1;
+    --forth: #F0F0F0;
+    --forth_org: #F4EDEA;
+    --fifth: #F4D1AE;
+}
+
+html {
+    font-size: 2vw;
+} 
+
+header nav hr {
+    width: 12.3em;
+    font-size: 1rem;
+    margin: auto;
+} 
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: var(--fifth);
+}
+
+body>* {
+    background-color: var(--fifth);
+}
+
+header,
+footer {
+    background-color: var(--primary);
+    color: var(--forth_org);
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: space-between;
+}
+
+header {
+    position: relative;
+    top: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    justify-content: stretch;
+}
+
+header > hr:first-of-type {
+    width: 0em;
+    font-size: 0em;
+    margin: 0rem;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+header a {
+    display: flex;
+    text-align: center;
+    align-items:center;
+    background-color: var(--third);
+    letter-spacing: 0.1em;
+    border: 0.1em solid var(--third);
+    border-radius: 0.4em;
+    text-decoration: none;
+    color: var(--primary);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+header a:hover {
+    color: var(--third);
+    background-color: var(--primary);
+}
+
+header a.active {
+    color: var(--forth_org);
+    background-color: var(--primary);
+}
+
+header a.active:hover{
+    cursor: auto;
+    -webkit-user-select: text;
+    -moz-select: text;
+    -ms-select: text;
+    user-select: text;
+}
+
+header a.logo {
+    text-transform: capitalize;
+    text-align: center;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    justify-self: start;
+    position: relative;
+    left: 0em;
+}
+
+main {
+    margin: 0 auto;
+    width: 80%;
+    flex-grow: 1;
+}
+
+main h1 {
+    color: var(--primary);
+    background-color: var(--fifth);
+    display: block;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: auto;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+
+    text-shadow: 0.025em 0.025em var(--forth_org);
+}
+
+main section#latests {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.65em;
+    margin-bottom: 1em;
+}
+
+main section#latests > div {
+    scroll-margin-top: 5em;
+}
+
+main section#latests div.item,
+main section#latests div.item > ul {
+    margin: 0.5em;
+}
+
+main section#latests div > div.item:hover {
+    transform: scale(1.1);
+}
+
+div.latest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    color: var(--primary);
+    width: 30%;
+}
+
+div.latest > div.control {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+div.control {
+    font-size: 1em;
+    margin: 0.75em;
+    width: 100%;
+}
+
+div.control h6 {
+    font-size: 1em;
+    margin: 0;
+    width: 80%;
+    text-transform: capitalize;
+}
+
+div.latest div.item {
+    display: flex;
+    width: 100%;
+    min-height: 5em;
+    max-height: 10em;
+    flex-direction: row;
+    margin: 0;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+    box-shadow: 0em 1em 2em -2em rgba(0, 0, 0, 0.5);
+}
+
+div.latest div.item div.img-container {
+    display: block;
+    width: 40%;
+    height: fit-content;
+    object-fit: contain;
+    box-shadow: none;
+    border-radius: 80%;
+    min-height: 6em;
+}
+
+/* div.latest div.img-container-shadow:hover {
+    width: 80%;
+    box-shadow: none;
+    border: none;
+    border: 1px solid var(--forth);
+} */
+
+div.latest div.item div.img-container-shadow img{
+    margin: 0;
+    box-shadow: 0px 0.3em 0.1em -0.1em rgba(0, 0, 0, 0.5);
+}
+
+div.latest div.item div.img-container-shadow img:hover {
+    box-shadow: none;
+    border: 0.005em solid var(--forth) ;
+    border-radius: 2%;
+    position: absolute;
+    top: -8.25em;
+    scale: 110%;
+}
+
+div.latest div.item img {
+    object-fit: contain;
+    width: 100%;
+    border-radius: inherit;
+}
+
+
+div.latest div.item ul {
+    width: 60%;
+    margin: 0;
+    padding-left: 0.2em;
+    list-style-type: none;
+}
+
+div.item ul li.trademark {
+    list-style: '™';
+    list-style-position: inside;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    justify-content: space-between;
+}
+
+footer>* {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin: 0 1.1em;
+}
+
+*.disabled{
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+*.disabled:hover {
+    cursor: not-allowed;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.pagination a {
+    position: relative;
+}
+
+.pagination li {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.pagination img {
+    width: 100%;
+    box-shadow: 0.11em 0em 0.1em 0.1em var(--primary);
+}
+
+.pagination img:hover {
+    background-color: var(--forth_org);
+}
+
+.pagination img.img-rotate-right {
+    rotate: 180deg;
+    /* box-shadow: 0.11em 0em 0.05em 0.1em var(--primary); */
+
+}
+
+
+
+@media (max-width: 480px) {
+
+}
+@media (max-width: 768px) {
+    html {
+        font-size: 4vw;
+    }
+
+    header nav hr {
+        visibility: hidden;
+        font-size: 0rem;
+    }
+
+    main section#latests {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #latests h6 {
+        text-align: center;
+    }
+
+    #latests div {
+        margin: auto;
+        margin-bottom: 1em;
+        width: 80%;
+    }
+
+    #latests div.img-container {
+        width: 30%;
+    }
+
+    #latests div.img-container-shadow img:hover {
+        position: absolute;
+        top: -10em;
+    }
+
+    main section#latests > div {
+        scroll-margin-top: 5em;
+    }
+}
+@media (max-width: 1024px) {
+
+}
+@media (max-width: 1200px) {
+    header {
+        position: sticky;
+        z-index: 1;
+    }
+
+    header.hidden {
+        position: relative;
+    }
+
+    header.show {
+        position: sticky;
+    }
+}
+
+@media (min-width: 1200px) {
+
+}

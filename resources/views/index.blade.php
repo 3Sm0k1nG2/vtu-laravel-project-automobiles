@@ -1,18 +1,37 @@
+@php
+    $paginators_current_page = [
+        'manufacturers' => $manufacturers->currentPage(),
+        'models' => $models->currentPage(),
+        'vehicles' => $vehicles->currentPage(),
+    ];
+
+    $manufacturers->appends($paginators_current_page)->links();
+    $models->appends($paginators_current_page)->links();
+    $vehicles->appends($paginators_current_page)->links();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home page</title>
+    <title>My Automobiles</title>
+    <link rel="icon" href="{{ url('favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"></link>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
-<body style="font-size: 24px">
-    <center><h1>Welcome user</h1></center>
-    <ul style="">
-        <li><u>Home</u></li>
-        <li><a href={{ route('manufacturer.index') }}>Manufacturers</a></li>
-        <li><a href={{ route('model.index') }}>Models</a></li>
-        <li><a href={{ route('vehicle.index') }}>Vehicles</a></li>
-    </ul>
+<body>
+    @include('partials.header')
+    <main>
+        <h1>My Automobiles</h1>
+
+        <section id="latests">
+            @include('partials.latest.manufacturers')
+            @include('partials.latest.models')
+            @include('partials.latest.vehicles')
+        </section>
+    </main>
+    @include('partials.footer')
 </body>
 </html>
