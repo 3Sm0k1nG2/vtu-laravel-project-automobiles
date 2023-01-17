@@ -36,7 +36,9 @@ class Manufacturer extends Model
     {
         parent::boot();
         static::deleting(function ($manufacturer) {
-            Storage::delete(Str::replaceFirst('storage/', 'public/', $manufacturer->image));
+            if($manufacturer->image){
+                Storage::delete(Str::replaceFirst('storage/', 'public/', $manufacturer->image));
+            }
         });
     }
 
@@ -46,7 +48,7 @@ class Manufacturer extends Model
         // destination path relative to the disk above
         $destination_path = "images/manufacturers";
 
-        if ($value != $this->{$attribute_name}) {
+        if ($value != $this->{$attribute_name} && $this->{$attribute_name}) {
             Storage::delete(Str::replaceFirst('storage/', 'public/', $this->{$attribute_name}));
         }
 

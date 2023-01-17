@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\VehicleRequest;
+use App\Models\Vehicle;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -19,6 +20,34 @@ class VehicleCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+
+    private function getFieldsData($show = FALSE, $edit = FALSE) {
+        $fields = [
+            [
+                'name'=> 'manufacturer_id',
+                'type'=> $show ? 'select' : ($edit ? 'view' : 'select'),
+                'view' => 'admin/fields/select_readonly',
+                'attribute' => 'name'
+            ],
+            [
+                'name'=> 'model_id',
+                'type'=> $show ? 'select' : ($edit ? 'view' : 'select'),
+                'view' => 'admin/fields/select_readonly',
+                'attribute' => 'name'
+            ],
+            [
+                'name'=> 'production_year',
+                'type'=> 'text'
+            ],
+            [
+                'name'=> 'kilometer_age',
+                'type'=> 'text'
+            ],
+        ];
+
+        return $fields;
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -29,6 +58,8 @@ class VehicleCrudController extends CrudController
         CRUD::setModel(\App\Models\Vehicle::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/vehicle');
         CRUD::setEntityNameStrings('vehicle', 'vehicles');
+
+        CRUD::addFields($this->getFieldsData());
     }
 
     /**
@@ -39,18 +70,8 @@ class VehicleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('manufacturer_id');
-        CRUD::column('model_id');
-        CRUD::column('production_year');
-        CRUD::column('kilometer_age');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::set('show.setFromDb', false);
+        CRUD::addColumns($this->getFieldsData(TRUE));
     }
 
     /**
@@ -63,16 +84,8 @@ class VehicleCrudController extends CrudController
     {
         CRUD::setValidation(VehicleRequest::class);
 
-        CRUD::field('manufacturer_id');
-        CRUD::field('model_id');
-        CRUD::field('production_year');
-        CRUD::field('kilometer_age');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
+        CRUD::set('show.setFromDb', false);
+        CRUD::addFields($this->getFieldsData());
     }
 
     /**
@@ -85,18 +98,11 @@ class VehicleCrudController extends CrudController
     {
         CRUD::setValidation(VehicleRequest::class);
 
-        CRUD::field('manufacturer_id')->type('custom.select_readonly');
-        CRUD::field('model_id')->type('custom.select_readonly');
-        CRUD::field('production_year');
-        CRUD::field('kilometer_age');
+        CRUD::addFields($this->getFieldsData(FALSE, TRUE));
     }
 
     protected function setupShowOperation(){
-        CRUD::column('manufacturer_id');
-        CRUD::column('model_id');
-        CRUD::column('production_year');
-        CRUD::column('kilometer_age');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        CRUD::set('show.setFromDb', false);
+        CRUD::addColumns($this->getFieldsData(TRUE));
     }
 }

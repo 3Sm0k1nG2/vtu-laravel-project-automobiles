@@ -1,4 +1,32 @@
-<div class="control">
+@php
+    $base_query_params = request()->query->all();
+    $base_query_params[$entities_name] = 1;
+    $entities_name_strsub_first_3 = substr($entities_name, 0, 3);
+
+    $additional_uri = '';
+
+    foreach ($base_query_params as $key => $value) {
+        if($key === $entities_name){
+            continue;
+        }
+
+        if($entities_name_strsub_first_3 === substr($key, 0, 3)){
+            unset($base_query_params[$key]);
+            continue;
+        }
+
+        $additional_uri = $additional_uri . '&' . $key . '=' . $value;
+    }
+
+    $base_url = url('/') 
+    . '/?manufacturers=' . $base_query_params['manufacturers']
+    . '&models=' . $base_query_params['models']
+    . '&vehicles=' . $base_query_params['vehicles']
+    . $additional_uri
+    . '#' . $entities_name;
+@endphp
+
+<div class="controls">
     <h6>Latests {{ $item_group_name }}
         (
         @if ($paginator->currentPage() > $paginator->lastPage())
@@ -10,6 +38,11 @@
         {{ $paginator->total() }}
         )
     </h6>
+    <div class="close">
+        <a href="{{ $base_url }}">
+            <img src="{{ 'images\close.png' }}" class="img-close">
+        </a>
+    </div>
     @if ($paginator->lastPage() > 1)
         <ul class="pagination">
             <li class="{{ $paginator->currentPage() <= 1 ? 'disabled' : '' }}">

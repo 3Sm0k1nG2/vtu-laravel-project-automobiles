@@ -110,6 +110,10 @@ main {
     flex-grow: 1;
 }
 
+main * {
+    transition: scale 1s;
+}
+
 main h1 {
     color: var(--primary);
     background-color: var(--fifth);
@@ -155,22 +159,22 @@ div.latest {
     width: 30%;
 }
 
-div.latest > div.control {
+div.latest > div.controls {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-div.control {
+div.controls {
     font-size: 1em;
     margin: 0.75em;
     width: 100%;
 }
 
-div.control h6 {
+div.controls h6 {
     font-size: 1em;
     margin: 0;
-    width: 80%;
+    width: 60%;
     text-transform: capitalize;
 }
 
@@ -195,13 +199,6 @@ div.latest div.item div.img-container {
     border-radius: 80%;
     min-height: 6em;
 }
-
-/* div.latest div.img-container-shadow:hover {
-    width: 80%;
-    box-shadow: none;
-    border: none;
-    border: 1px solid var(--forth);
-} */
 
 div.latest div.item div.img-container-shadow img{
     margin: 0;
@@ -276,21 +273,38 @@ footer>* {
 }
 
 .pagination img {
+    background: transparent;
     width: 100%;
     box-shadow: 0.11em 0em 0.1em 0.1em var(--primary);
 }
 
 .pagination img:hover {
+    transition: background-color 0.1s;
+
     background-color: var(--forth_org);
 }
 
 .pagination img.img-rotate-right {
     rotate: 180deg;
-    /* box-shadow: 0.11em 0em 0.05em 0.1em var(--primary); */
 
 }
 
+div.close {
+    width: 10%;
+    margin: auto;
+}
 
+
+div.close img.img-close {
+    width: 100%;
+    position: relative;
+    top: -0.25em;
+    transition: scale 0.1s;
+}
+
+div.close img.img-close:hover {
+    scale: 0.95;
+}
 
 @media (max-width: 480px) {
 
@@ -314,7 +328,7 @@ footer>* {
         text-align: center;
     }
 
-    #latests div {
+    #latests > div {
         margin: auto;
         margin-bottom: 1em;
         width: 80%;
@@ -331,6 +345,13 @@ footer>* {
 
     main section#latests > div {
         scroll-margin-top: 5em;
+    }
+
+    div.controls {
+    }
+
+    div.close img.img-close {
+        top: -0.4em;
     }
 }
 @media (max-width: 1024px) {

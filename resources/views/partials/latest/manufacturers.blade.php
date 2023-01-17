@@ -11,7 +11,13 @@
         </div>
         <ul>
             <li>{{ $manufacturer->name }}&trade;</li>
-            <li>{{ $manufacturer->founded_year }}</li>
+            <li>
+                @include('partials.latest.latest_link', [
+                    'param_name' => 'man_year',
+                    'link_resource' => $manufacturer->founded_year,
+                    'value' => $manufacturer->founded_year,
+                ])
+            </li>
         </ul>
     </div>  
     @endforeach

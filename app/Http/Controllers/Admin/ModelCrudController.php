@@ -95,6 +95,7 @@ class ModelCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         CRUD::setValidation(ModelRequest::class);
+        
         CRUD::addFields($this->getFieldsData(FALSE, TRUE));
     }
 

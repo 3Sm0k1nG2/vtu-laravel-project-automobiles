@@ -3,6 +3,11 @@
         'manufacturers' => $manufacturers->currentPage(),
         'models' => $models->currentPage(),
         'vehicles' => $vehicles->currentPage(),
+        'man_year' => request()->query->get('man_year'),
+        'mod_man' => request()->query->get('mod_man'),
+        'veh_man' => request()->query->get('veh_man'),
+        'veh_mod' => request()->query->get('veh_mod'),
+        'veh_year' => request()->query->get('veh_year'),
     ];
 
     $manufacturers->appends($paginators_current_page)->links();
@@ -27,9 +32,15 @@
         <h1>My Automobiles</h1>
 
         <section id="latests">
-            @include('partials.latest.manufacturers')
-            @include('partials.latest.models')
-            @include('partials.latest.vehicles')
+            @include('partials.latest.manufacturers', [
+                'entities_name' => 'manufacturers'
+            ])
+            @include('partials.latest.models', [
+                'entities_name' => 'models'
+            ])
+            @include('partials.latest.vehicles', [
+                'entities_name' => 'vehicles'
+            ])
         </section>
     </main>
     @include('partials.footer')

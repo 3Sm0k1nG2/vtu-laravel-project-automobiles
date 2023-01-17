@@ -36,7 +36,9 @@ class Model extends BaseModel
     {
         parent::boot();
         static::deleting(function ($model) {
-            Storage::delete(Str::replaceFirst('storage/', 'public/', $model->image));
+            if($model->image){
+                Storage::delete(Str::replaceFirst('storage/', 'public/', $model->image));
+            }
         });
     }
 
@@ -46,7 +48,7 @@ class Model extends BaseModel
         // destination path relative to the disk above
         $destination_path = "images/models";
 
-        if ($value != $this->{$attribute_name}) {
+        if ($value != $this->{$attribute_name} && $this->{$attribute_name}) {
             Storage::delete(Str::replaceFirst('storage/', 'public/', $this->{$attribute_name}));
         }
         

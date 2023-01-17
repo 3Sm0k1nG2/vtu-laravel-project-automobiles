@@ -10,7 +10,14 @@
             <img src="{{ $model->image }}" width="128" alt="{{ $model->name . '\'s ' . ($imageName ?? 'image') }}">
         </div>
         <ul>
-            <li>{{ $model->manufacturer->name }}&trade;</li>
+            <li>
+                @include('partials.latest.latest_link', [
+                    'param_name' => 'mod_man',
+                    'link_resource' => $model->manufacturer_id,
+                    'value' => $model->manufacturer->name,
+                    'trademark' => true,
+                ])
+            </li>
             <li>{{ $model->name}}</li>
         </ul>
     </div>  
