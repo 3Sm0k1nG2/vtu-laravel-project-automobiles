@@ -19,9 +19,9 @@
     }
 
     $base_url = url('/') 
-    . '/?manufacturers=' . $base_query_params['manufacturers']
-    . '&models=' . $base_query_params['models']
-    . '&vehicles=' . $base_query_params['vehicles']
+    . '/?manufacturers=' . ($base_query_params['manufacturers'] ?? 1)
+    . '&models=' . ($base_query_params['models'] ?? 1)
+    . '&vehicles=' . ($base_query_params['vehicles'] ?? 1)
     . $additional_uri
     . '#' . $entities_name;
 @endphp
